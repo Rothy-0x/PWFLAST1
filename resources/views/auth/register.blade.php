@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Register</title>
 </head>
-<body style="background-color: #f8f9fa;">
+<body class="bg-light">
 
-<div class="container">
-    <div class="card border-info">
+<div class="container mt-5">
+    <div class="card border-info mx-auto" style="max-width: 400px;">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Registration Form</h4>
+        </div>
         <div class="card-body">
             <form action="" method="post">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror border" id="name"
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                            name="name" placeholder="Your name" value="{{ old('name') }}">
                     @error('name')
                     <div class="invalid-feedback">
@@ -26,7 +29,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror border" id="email"
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                            name="email" placeholder="name@example.com" value="{{ old('email') }}">
                     @error('email')
                     <div class="invalid-feedback">
@@ -36,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror border" id="password" name="password" placeholder="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
                     @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -44,9 +47,9 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="password_confirmation" class="form-label">Password Confirmation</label>
-                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror border" id="password_confirmation" name="password_confirmation"
-                           placeholder="password">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation"
+                           placeholder="Confirm Password">
                     @error('password_confirmation')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -54,7 +57,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <input type="submit" class="btn btn-primary" value="Register">
+                    <button type="submit" class="btn btn-info">Register</button>
                 </div>
             </form>
         </div>
