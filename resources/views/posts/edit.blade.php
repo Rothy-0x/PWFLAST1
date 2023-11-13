@@ -1,28 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Post</h1>
+    <div class="container mt-4 mb-5">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Edit Post</h1>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-    @if ($post->image && Storage::exists($post->image))
-    <img src="{{ asset(Storage::url($post->image)) }}" alt="Current Post Image" class="img-fluid mb-3">
-@endif
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" required>
+                </div>
 
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content:</label>
+                    <textarea class="form-control" id="content" name="content" required>{{ $post->content }}</textarea>
+                </div>
 
-    <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
-        <!-- form fields -->
-    
-        @csrf
-        @method('PUT')
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
 
-        <label for="title">Title:</label>
-        <input type="text" name="title" value="{{ $post->title }}" required>
+                <button type="submit" class="btn btn-form">Update Post</button>
 
-        <label for="content">Content:</label>
-        <textarea name="content" required>{{ $post->content }}</textarea>
+            </form>
+        </div>
+    </div>
+</div>
 
-        <label for="image">Image:</label>
-        <input type="file" name="image">
-
-        <button type="submit" class="btn btn-primary">Update Post</button>
-    </form>
 @endsection
