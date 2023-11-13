@@ -1,22 +1,33 @@
-<!-- resources/views/posts/create.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Post</h1>
+    <div class="container mt-4 mb-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Create Post</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                    @csrf
 
-    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-        @csrf
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
 
-        <label for="title">Title:</label>
-        <input type="text" name="title" required>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content:</label>
+                        <textarea class="form-control" id="content" name="content" required></textarea>
+                    </div>
 
-        <label for="content">Content:</label>
-        <textarea name="content" required></textarea>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image:</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
 
-        <label for="image">Image:</label>
-        <input type="file" name="image">
-
-        <button type="submit">Create Post</button>
-    </form>
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -11,7 +11,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'image', 'user_id'];
+    protected $fillable = ['title', 'content', 'image', 'user_id','likes_count', 'dislikes_count'];
 
     public function comments()
     {
@@ -22,4 +22,15 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+
 }

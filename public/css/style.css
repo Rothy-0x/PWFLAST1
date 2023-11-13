@@ -1,3 +1,13 @@
+:root {
+    --primary: #7c4dff;
+    --primary-hover: #A079FF;
+    --dark: #25282c;
+    --card-content: #2c2d30;
+    --secondary: #1C1E21;
+    --putih: #ECF0F3;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -66,38 +76,43 @@ body {
     height: 100vh;
 }
 
+
 .card {
+    background-color: var(--card-content);
     width: 400px;
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.card-header {
+    background-color: var(--primary);
+    border-radius: 14px;
+}
+
 .card-body {
+    color: var(--putih);
     padding: 2rem;
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+.btn-custom {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--putih);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+.btn-custom:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    color: var(--putih);
 }
 
-.text-center a {
-    color: #000;
+.text-regis a {
+    color: var(--putih);
     text-decoration: none;
 }
 
-.text-center a:hover {
+.text-regis a:hover {
     color: #007bff;
-}
-
-hr {
-    width: 60px;
-    background-color: #7c4dff;
-    height: 2px;
 }

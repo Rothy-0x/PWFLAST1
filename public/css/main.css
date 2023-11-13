@@ -1,3 +1,12 @@
+:root {
+    --primary: #7c4dff;
+    --dark: #25282c;
+    --card-content: #2c2d30;
+    --secondary: #1C1E21;
+    --putih: #ECF0F3;
+}
+
+
 @media only screen and (max-width: 600px) {
     body {
         font-size: 14px;
@@ -54,12 +63,25 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--secondary);
 }
 
-.container {
-    display: flex;
+nav {
+    background-color: var(--dark);
+}
+
+.btn-login {
+    background-color: var(--primary);
+
+}
+
+/* nav a::hover {
+    background-color: ;
+} */
+
+.container-index {
+    padding: 0rem 3rem 0rem 3rem;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -68,20 +90,62 @@ body {
 
 
 .card {
-    
+    background-color: var(--card-content);
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--putih);
 }
 
 .card-body {
     padding: 2rem;
 }
 
+.form-label,
+.form-control {
+    background-color: var(--dark);
+    color: var(--putih);
+}
+
+.form-control:focus {
+    background-color: var(--dark);
+    color: var(--putih);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(124, 77, 255, 0.25);
+}
+
+.form-control-file {
+    border: none;
+    outline: none;
+    margin-bottom: 40px;
+}
+
+.form-control-file::-webkit-file-upload-button {
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.form-control-file::file-selector-button {
+    padding: 5px;
+}
+
+textarea {
+    background-color: var(--dark);
+    color: var(--putih);
+}
+
+.btn-form {
+    background-color: var(--primary);
+    color: var(--putih);
+}
+
+.btn-form:hover {
+    background-color: darken(var(--primary), 10%);
+}
 
 
 hr {
     width: 60px;
-    background-color: #7c4dff;
+    background-color: var(--primary);
     height: 2px;
 }

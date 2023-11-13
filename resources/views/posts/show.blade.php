@@ -1,24 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $post->title }}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+@extends('layouts.app')
 
+@section('content')
     <div class="container mt-4">
-        <h1>{{ $post->title }}</h1>
-        <p>{{ $post->content }}</p>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h1 class="card-title">{{ $post->title }}</h1>
+                <p class="card-text">{{ $post->content }}</p>
 
-        @if ($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="img-fluid">
-        @endif
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="img-fluid mt-3">
+                @endif
 
-        <p class="mt-2">Created by: {{ $post->user->name }}</p>
+                <p class="mt-3">Created by: {{ $post->user->name }}</p>
 
-        <h2 class="mt-4">Comments</h2>
+                <div class="mt-4">
+                    <!-- Like Button -->
+                    <form method="POST" action="{{ route('posts.like', $post) }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-success">Like</button>
+                        <span class="ml-2">{{ $post->likes()->count() }} Likes</span>
+                    </form>
+
+                    <form method="POST" action="{{ route('posts.dislike', $post) }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Dislike</button>
+                        <span class="ml-2">{{ $post->dislikes()->count() }} Dislikes</span>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <h2 class="mt-4 text-light">Comments</h2>
 
         @if($post->comments && $post->comments->count() > 0)
             @foreach($post->comments as $comment)
@@ -29,28 +44,23 @@
                 </div>
             @endforeach
         @else
-            <p>No comments yet.</p>
+            <p class="text-light">No comments yet.</p>
         @endif
 
         @auth
             <!-- Comment Form -->
             <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}" class="mt-4">
                 @csrf
-                <div class="form-group">
+                <div class="form-group text-light">
                     <label for="comment">Add a Comment:</label>
                     <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Comment</button>
             </form>
         @else
-            <p class="mt-4">Login to leave a comment. <a href="{{ route('login') }}">Login</a></p>
+            <p class="mt-4 text-light">Login to leave a comment. <a href="{{ route('login') }}">Login</a></p>
         @endauth
 
-        <a href="{{ route('posts.index') }}" class="btn btn-secondary mt-4">Back to Posts</a>
+        <a href="{{ route('posts.index') }}" class="btn btn-secondary mt-4 mb-5">Back to Posts</a>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection

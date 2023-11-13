@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::post('/', function () {
-    return redirect('/login'); 
+    return redirect('/login');
 });
 Route::middleware(['guest'])->group(function () {
     Route::get('/posts/index', function () {
@@ -71,3 +71,7 @@ Route::get('/posts/index', function () {
 Route::resource('posts', PostController::class);
 
 Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
+
+
+Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
+Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');
