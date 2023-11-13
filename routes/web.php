@@ -23,16 +23,29 @@ Route::get('/', function () {
 });
 
 Route::post('/', function () {
-    return redirect('/login'); // Mengarahkan metode POST ke halaman login
+    return redirect('/login'); 
+});
+Route::middleware(['guest'])->group(function () {
+    Route::get('/posts/index', function () {
+        return view('/posts/index');
+    })->name('posts.index');
 });
 
 Route::get('/posts/index', function () {
     return view('/posts/index');
 });
+Route::post('/redirect-to-login', function () {
+    return redirect('/login');
+})->name('redirect.to.login');
 
-Route::get('/', [RegisterController::class, 'create'])->name('register');
-Route::post('/', [RegisterController::class, 'store'])->name('register');
-Route::view('/login', 'login')->name('login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('posts.index');
+    });
+
+    Route::get('/posts/index', [PostController::class, 'index'])->name('posts.index');
+});
+
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');

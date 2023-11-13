@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Register</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 
-<div class="container mt-5">
+<div class="container">
     <div class="card border-info mx-auto" style="max-width: 400px;">
         <div class="card-header bg-info text-white">
             <h4 class="mb-0">Registration Form</h4>
@@ -57,8 +58,11 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-info">Register</button>
+                    <button type="submit" class="btn btn-primary">Register</button>
                 </div>
+                <div class="text-center">
+                <p>Don't have an account? <a href="{{ route('login') }}">Register here</a></p>
+            </div>
             </form>
         </div>
     </div>
