@@ -16,15 +16,16 @@
                     <p class="card-text">Created by: {{ $post->user->name }}</p>
                     <a href="{{ route('posts.show', $post) }}" class="btn btn-info">View</a>
 
-                    @if(auth()->user()->id === $post->user_id)
-                        <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit</a>
+                    @if(auth()->check() && auth()->user()->id === $post->user_id)
+    <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit</a>
 
-                        <form method="POST" action="{{ route('posts.destroy', $post) }}" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    @endif
+    <form method="POST" action="{{ route('posts.destroy', $post) }}" class="d-inline">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+@endif
+
                 </div>
             </div>
         @endforeach
