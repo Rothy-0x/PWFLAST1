@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/PostController.php
 
 namespace App\Http\Controllers;
 
@@ -99,6 +98,27 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
+
+    public function like(Post $post)
+    {
+        $post->likes()->create([
+            'user_id' => auth()->id(),
+            'type' => 'like',
+        ]);
+
+        return back();
+    }
+
+    public function dislike(Post $post)
+    {
+        $post->dislikes()->create([
+            'user_id' => auth()->id(),
+            'type' => 'dislike',
+        ]);
+
+        return back();
+    }
+
 }
 
 

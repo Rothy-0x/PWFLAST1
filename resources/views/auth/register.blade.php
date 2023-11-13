@@ -8,12 +8,12 @@
     <title>Register</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container">
     <div class="card border-info mx-auto" style="max-width: 400px;">
-        <div class="card-header bg-info text-white">
-            <h4 class="mb-0">Registration Form</h4>
+        <div class="card-header text-white">
+            <h4 class="m-2">Registration Form</h4>
         </div>
         <div class="card-body">
             <form action="" method="post">
@@ -58,9 +58,9 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-custom">Register</button>
                 </div>
-                <div class="text-center">
+                <div class="text-center text-regis">
                 <p>Don't have an account? <a href="{{ route('login') }}">Register here</a></p>
             </div>
             </form>

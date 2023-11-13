@@ -34,10 +34,10 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <input type="submit" class="btn btn-primary" value="Login">
+                    <input type="submit" class="btn btn-custom" value="Login">
                 </div>
             </form>
-            <div class="text-center">
+            <div class="text-center text-regis">
                 <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
             </div>
         </div>
