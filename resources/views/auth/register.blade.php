@@ -8,7 +8,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container">
     <div class="card border-info mx-auto" style="max-width: 400px;">
