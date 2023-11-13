@@ -63,25 +63,29 @@ class PostController extends Controller
             'content' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        if ($request->hasFile('image')) {
-            // Delete old image file if it exists
-            if ($post->image) {
-                Storage::delete($post->image);
-            }
-
-            // Store the new image file
-            $imagePath = $request->file('image')->store('images');
-            $post->update(['image' => $imagePath]);
+    
+        // Delete old image file if it exists
+        if ($post->image && Storage::exists($post->image)) {
+            Storage::delete($post->image);
         }
-
+    
+        $imagePath = null;
+    
+        if ($request->hasFile('image')) {
+            // Store the new image file
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+    
+        // Update title, content, and image path
         $post->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
+            'image' => $imagePath,
         ]);
-
+    
         return redirect()->route('posts.index');
     }
+    
 
     public function destroy(Post $post)
     {

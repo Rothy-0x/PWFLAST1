@@ -11,10 +11,23 @@
                 @csrf
                 @method('PUT')
 
+//<<<<<<< main
                 <div class="mb-3">
                     <label for="title" class="form-label">Title:</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" required>
                 </div>
+//=======
+    @if ($post->image && Storage::exists($post->image))
+    <img src="{{ asset(Storage::url($post->image)) }}" alt="Current Post Image" class="img-fluid mb-3">
+@endif
+
+
+    <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
+        <!-- form fields -->
+    
+        @csrf
+        @method('PUT')
+//>>>>>>> main
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Content:</label>
@@ -33,4 +46,9 @@
     </div>
 </div>
 
+//<<<<<<< main
+//=======
+        <button type="submit" class="btn btn-primary">Update Post</button>
+    </form>
+//>>>>>>> main
 @endsection

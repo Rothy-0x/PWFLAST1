@@ -27,6 +27,10 @@
                         <span class="ml-2">{{ $post->dislikes()->count() }} Dislikes</span>
                     </form>
 
+//<<<<<<< main
+//=======
+        <p class="mt-2">Created by: {{ optional($post->user)->name ?: 'Unknown' }}</p>
+//>>>>>>> main
 
 
                 </div>
@@ -39,7 +43,7 @@
             @foreach($post->comments as $comment)
                 <div class="card mb-2">
                     <div class="card-body">
-                        <p class="card-text"><strong>{{ $comment->user->name }}:</strong> {{ $comment->content }}</p>
+                        <p class="card-text"><strong>{{ optional($comment->user)->name ?: 'Unknown' }}:</strong> {{ $comment->content }}</p>
                     </div>
                 </div>
             @endforeach
